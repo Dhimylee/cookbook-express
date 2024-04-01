@@ -5,17 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class Measure extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'name',
-        'active'
     ];
 
-    public function users()
+    public function ingredient_recipees()
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(Ingredient_recipee::class);
     }
 }

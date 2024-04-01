@@ -5,17 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class Book extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'active'
+        'title',
+        'isbn',
+        'published_at',
     ];
 
-    public function users()
+    public function publication()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsTo(Publication::class);
     }
 }
