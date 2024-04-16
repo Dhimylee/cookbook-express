@@ -19,4 +19,9 @@ class Book extends Model
     {
         return $this->belongsTo(Publication::class);
     }
+
+    public function publisher()
+    {
+        return $this->hasOne(Employee::class, 'employee_id', 'id');
+    }
 }

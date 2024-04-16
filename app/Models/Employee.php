@@ -30,13 +30,23 @@ class Employee extends Model
         return $this->hasOne(User::class);
     }
 
-    public function restaurant()
-    {
-        return $this->hasMany(Restaurant::class);
-    }
-
-    public function experience()
+    public function experiences()
     {
         return $this->hasMany(Employee_experience::class, 'employee_id', 'id');
+    }
+
+    public function books()
+    {
+        return $this->hasMany(Book::class);
+    }
+
+    public function recipees()
+    {
+        return $this->hasMany(Recipee::class);
+    }
+
+    public function tastings()
+    {
+        return $this->hasMany(Tasting::class);
     }
 }

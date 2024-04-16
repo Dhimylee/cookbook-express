@@ -33,13 +33,18 @@ class Recipee extends Model
         return $this->hasMany(Ingredient_recipee::class);
     }
 
-    public function tasting()
+    public function tastings()
     {
-        return $this->hasOne(Tasting::class);
+        return $this->hasMany(Tasting::class);
     }
 
     public function publications()
     {
         return $this->hasMany(Publication::class);
+    }
+
+    public function photos()
+    {
+        return $this->hasMany(Photo::class);
     }
 }

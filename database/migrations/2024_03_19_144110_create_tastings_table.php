@@ -1,8 +1,10 @@
 <?php
 
+use App\Models\Employee;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Recipee;
 
 return new class extends Migration
 {
@@ -14,7 +16,9 @@ return new class extends Migration
         Schema::create('tastings', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->foreignId('employee_id')->constrained();
+            $table->foreignIdFor(Employee::class)->constrained();
+            $table->foreignIdFor(Recipee::class)->constrained();
+            $table->decimal('rating');
             $table->timestamps();
         });
     }

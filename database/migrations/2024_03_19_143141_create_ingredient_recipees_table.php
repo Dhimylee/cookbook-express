@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('ingredient_id')->constrained();
             $table->foreignId('recipee_id')->constrained();
+            $table->foreignId('measure_id')->constrained();
             $table->decimal('quantity');
             $table->timestamps();
         });

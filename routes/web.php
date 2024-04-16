@@ -28,4 +28,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::middleware('auth')->prefix('book')->group(function () {
+    Route::get('/create', [BookController::class, 'create'])->name('book.create');
+    Route::post('/store', [BookController::class, 'store'])->name('book.store');
+    Route::get('/{book}/edit', [BookController::class, 'edit'])->name('book.edit');
+    Route::patch('/{book}', [BookController::class, 'update'])->name('book.update');
+    Route::delete('/{book}', [BookController::class, 'destroy'])->name('book.destroy');
+});
+
 require __DIR__.'/auth.php';
