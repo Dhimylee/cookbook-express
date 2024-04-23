@@ -11,7 +11,7 @@ class Publication extends Model
 
     protected $fillable = [
         'book_id',
-        'recipee_id',
+        'recipe_id',
     ];
 
     public function book()
@@ -19,8 +19,8 @@ class Publication extends Model
         return $this->hasOne(Book::class);
     }
 
-    public function recipee()
+    public function recipe()
     {
-        return $this->hasOne(Recipee::class);
+        return $this->hasOne(Recipe::class);
     }
 }

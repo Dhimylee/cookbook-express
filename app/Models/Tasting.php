@@ -10,15 +10,15 @@ class Tasting extends Model
     use HasFactory;
 
     protected $fillable = [
-        'recipee_id',
+        'recipe_id',
         'employee_id',
         'date',
         'rating',
     ];
 
-    public function recipee()
+    public function recipe()
     {
-        return $this->belongsTo(Recipee::class);
+        return $this->belongsTo(Recipe::class);
     }
 
     public function employee()

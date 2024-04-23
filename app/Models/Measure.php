@@ -13,8 +13,8 @@ class Measure extends Model
         'name',
     ];
 
-    public function ingredient_recipees()
+    public function ingredient_recipes()
     {
-        return $this->hasMany(Ingredient_recipee::class);
+        return $this->hasMany(Ingredient_recipe::class);
     }
 }

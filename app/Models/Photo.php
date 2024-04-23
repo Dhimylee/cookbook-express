@@ -10,12 +10,12 @@ class Photo extends Model
     use HasFactory;
 
     protected $fillable = [
-        'recipee_id',
+        'recipe_id',
         'path',
     ];
 
-    public function recipee()
+    public function recipe()
     {
-        return $this->hasOne(Recipee::class);
+        return $this->hasOne(Recipe::class);
     }
 }

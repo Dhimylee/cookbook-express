@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Ingredient_recipee extends Model
+class Ingredient_recipe extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'ingredient_id',
-        'recipee_id',
+        'recipe_id',
         'measure_id',
         'quantity',
     ];
@@ -21,9 +21,9 @@ class Ingredient_recipee extends Model
         return $this->hasOne(Ingredient::class);
     }
 
-    public function recipee()
+    public function recipe()
     {
-        return $this->hasOne(Recipee::class);
+        return $this->hasOne(Recipe::class);
     }
 
     public function measure()

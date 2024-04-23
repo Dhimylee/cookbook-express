@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use App\Models\Book;
-use App\Models\Recipee;
+use App\Models\Recipe;
 
 return new class extends Migration
 {
@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('publications', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Book::class)->constrained();
-            $table->foreignIdFor(Recipee::class)->constrained();
+            $table->foreignIdFor(Recipe::class)->constrained();
             $table->timestamps();
         });
     }

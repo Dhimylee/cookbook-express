@@ -40,9 +40,9 @@ class Employee extends Model
         return $this->hasMany(Book::class);
     }
 
-    public function recipees()
+    public function recipes()
     {
-        return $this->hasMany(Recipee::class);
+        return $this->hasMany(Recipe::class);
     }
 
     public function tastings()

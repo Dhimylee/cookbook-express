@@ -13,8 +13,8 @@ class Category extends Model
         'name'
     ];
 
-    public function recipees()
+    public function recipes()
     {
-        return $this->hasMany(Recipee::class);
+        return $this->hasMany(Recipe::class);
     }
 }

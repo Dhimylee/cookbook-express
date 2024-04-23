@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Recipee;
+use App\Models\Recipe;
 use Illuminate\Http\Request;
 
-class RecipeeController extends Controller
+class RecipeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class RecipeeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Recipee $recipee)
+    public function show(Recipe $recipe)
     {
         //
     }
@@ -42,7 +42,7 @@ class RecipeeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Recipee $recipee)
+    public function edit(Recipe $recipe)
     {
         //
     }
@@ -50,7 +50,7 @@ class RecipeeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Recipee $recipee)
+    public function update(Request $request, Recipe $recipe)
     {
         //
     }
@@ -58,7 +58,7 @@ class RecipeeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Recipee $recipee)
+    public function destroy(Recipe $recipe)
     {
         //
     }
