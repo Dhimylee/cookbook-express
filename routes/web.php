@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,18 +23,23 @@ Route::get('/dashboard', function () {
     return view('home');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::middleware('auth')->prefix('users')->group(function () {
+    Route::get('/', [UserController::class, 'index'])->name('user.index');
+    Route::get('/show', [UserController::class, 'show'])->name('user.show');
+    Route::get('/edit', [UserController::class, 'edit'])->name('user.edit');
+    Route::patch('/edit', [UserController::class, 'update'])->name('user.update');
+    Route::delete('/edit', [UserController::class, 'destroy'])->name('user.destroy');
 });
 
 Route::middleware('auth')->prefix('book')->group(function () {
+    Route::get('/', [BookController::class, 'index'])->name('book.index');
     Route::get('/create', [BookController::class, 'create'])->name('book.create');
     Route::post('/store', [BookController::class, 'store'])->name('book.store');
     Route::get('/{book}/edit', [BookController::class, 'edit'])->name('book.edit');
     Route::patch('/{book}', [BookController::class, 'update'])->name('book.update');
     Route::delete('/{book}', [BookController::class, 'destroy'])->name('book.destroy');
 });
+
+
 
 require __DIR__.'/auth.php';

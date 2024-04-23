@@ -7,9 +7,8 @@
     <title>
         @yield('title')
     </title>
-    <style>
-        @yield('style')
-    </style>
+    
+    @yield('style')
 </head>
 <body>
     <header>
@@ -20,8 +19,6 @@
         @yield('content')
     </main>
 
-    <script>
-        @yield('script')
-    </script>
+    @yield('script')
 </body>
 </html>
