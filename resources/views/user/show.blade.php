@@ -9,7 +9,7 @@
     <p>Seu ID é: {{ $user->id }}</p>
     <p>Seu perfil foi criado em: {{ $user->created_at }}</p>
     <p>Seu perfil foi atualizado em: {{ $user->updated_at }}</p>
-    <a href="{{ route('user.edit', ['user' => $user->id]) }}">Editar</a>
+    <a href="{{ route('user.edit', $user->id) }}">Editar</a>
     <a href="{{ route('user.index') }}">Voltar</a>
 @endsection
 

@@ -23,10 +23,10 @@ Route::get('/dashboard', function () {
     return view('home');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->prefix('users')->group(function () {
+Route::middleware('auth')->prefix('users')->middleware(['hasRole:admin,hr'])->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('user.index');
-    Route::get('/show', [UserController::class, 'show'])->name('user.show');
-    Route::get('/edit', [UserController::class, 'edit'])->name('user.edit');
+    Route::get('/show/{userId}', [UserController::class, 'show'])->name('user.show');
+    Route::get('/edit/{userId}', [UserController::class, 'edit'])->name('user.edit');
     Route::patch('/edit', [UserController::class, 'update'])->name('user.update');
     Route::delete('/edit', [UserController::class, 'destroy'])->name('user.destroy');
 });

@@ -24,9 +24,8 @@
                     <td>{{ $user->created_at }}</td>
                     <td>{{ $user->updated_at }}</td>
                     <td>
-                        <a href="{{ route('user.show', ['user' => $user->id]) }}">Ver</a>
-                        <a href="{{ route('user.edit', ['user' => $user->id]) }}">Editar</a>
-                        <a href="{{ route('user.destroy', ['user' => $user->id]) }}">Deletar</a>
+                        <a href="{{ route('user.show', $user->id) }}">Ver</a>
+                        <a href="{{ route('user.edit', $user->id) }}">Editar</a>
                     </td>
                 </tr>
             @endforeach

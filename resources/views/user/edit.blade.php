@@ -4,21 +4,27 @@
 
 @section('content')
     <h1>Editar Usuário</h1>
-    <form action="{{ route('user.update', ['user' => $user->id]) }}" method="post">
+    <form action="{{ route('user.update') }}" method="post">
         @csrf
-        @method('PUT')
+        @method('PATCH')
+        <input type="hidden" name="userId" value="{{ $user->id }}">
+
         <label for="name">Nome</label>
-        <input type="text" name="name" id="name" value="{{ $user->name }}" disabled>
+        <input type="text" name="name" id="name" value="{{ $user->name }}">
         <label for="email">E-mail</label>
         <input type="email" name="email" id="email" value="{{ $user->email }}">
 
         <h1>Dados do funcionário</h1>
-        <label for="role">Cargo</label>
-        <select name="" id=""></select>
+        <label for="role_id">Cargo</label>
+        <select name="role_id" id="role_id">
+            @foreach ($roles as $role)
+                <option value="{{ $role->id }}" {{ $role->id == $user->role_id ? 'selected' : '' }}>{{ $role->name }}</option>
+            @endforeach
+        </select>
 
         <button type="submit">Salvar</button>
     </form>
-    <a href="{{ route('user.show', ['user' => $user->id]) }}">Voltar</a>
+    <a href="{{ route('user.show', $user->id) }}">Voltar</a>
 @endsection
 
 @section('script')

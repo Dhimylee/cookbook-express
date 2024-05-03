@@ -6,6 +6,7 @@ use App\Repositories\UserRepository;
 use App\Repositories\RoleRepository;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Role;
 
 class UserController extends Controller
 {
@@ -15,22 +16,36 @@ class UserController extends Controller
         return view('user.index')->with('users', $users);
     }
 
-    public function show()
+    public function show($userId)
     {
-        $user = auth()->user();
+        $user = User::find($userId);
         return view('user.show', compact('user'));
     }
 
-    public function edit(Request $request)
+    public function edit($userId)
     {
-        $user = (new UserRepository)->find($request->id);
-        $roles = (new RoleRepository)->all();
+        $user = User::find($userId);
+        $roles = Role::all();
+
         return view('user.edit', compact('user', 'roles'));
     }
 
-    public function update()
+    public function update(Request $request)
     {
-        return view('user.update');
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'role_id' => 'required',
+        ]);
+
+        $user = User::find($request->userId);
+        $user->name = $validated['name'];
+        $user->email = $validated['email'];
+        $user->role_id = $validated['role_id'];
+
+
+        $user->save();
+        return redirect()->route('user.edit', ['userId' => $user->id]);
     }
 
     public function destroy()

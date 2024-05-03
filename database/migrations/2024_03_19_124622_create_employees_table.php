@@ -19,7 +19,6 @@ return new class extends Migration
             $table->date('demission_date')->nullable();
             $table->decimal('salary');
             $table->unsignedBigInteger('role_id');
-            $table->foreign('role_id')->references('id')->on('roles');
             $table->string('fantasy_name')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

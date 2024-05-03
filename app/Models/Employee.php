@@ -15,15 +15,9 @@ class Employee extends Model
         'admission_date',
         'demission_date',
         'salary',
-        'role_id',
         'fantasy_name',
         'user_id'
     ];
-
-    public function role()
-    {
-        return $this->belongsTo(Role::class);
-    }
 
     public function user()
     {
