@@ -43,7 +43,6 @@ class UserController extends Controller
         $user->email = $validated['email'];
         $user->role_id = $validated['role_id'];
 
-
         $user->save();
         return redirect()->route('user.edit', ['userId' => $user->id]);
     }

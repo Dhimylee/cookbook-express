@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,12 @@ Route::middleware('auth')->prefix('users')->middleware(['hasRole:admin,hr'])->gr
     Route::get('/edit/{userId}', [UserController::class, 'edit'])->name('user.edit');
     Route::patch('/edit', [UserController::class, 'update'])->name('user.update');
     Route::delete('/edit', [UserController::class, 'destroy'])->name('user.destroy');
+});
+
+Route::middleware('auth')->prefix('profile')->group(function () {
+    Route::get('/', [ProfileController::class, 'show'])->name('show');
+    Route::get('/', [ProfileController::class, 'edit'])->name('edit');
+    Route::patch('/update', [ProfileController::class, 'update'])->name('update');
 });
 
 Route::middleware('auth')->prefix('book')->group(function () {
