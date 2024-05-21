@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use App\Repositories\UserRepository;
 use App\Repositories\RoleRepository;
 use Illuminate\Http\Request;
@@ -36,6 +37,12 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required',
             'role_id' => 'required',
+
+            'rg' => 'required_unless:role_id,2',
+            'admission_date' => 'required_unless:role_id,2',
+            'demission_date' => 'nullable',
+            'salary' => 'required_unless:role_id,2',
+            'fantasy_name' => 'nullable',
         ]);
 
         $user = User::find($request->userId);
@@ -44,6 +51,34 @@ class UserController extends Controller
         $user->role_id = $validated['role_id'];
 
         $user->save();
+
+        if($user->role_id == 2){
+            $employee = Employee::where('user_id', $user->id);
+            $employee->delete();
+
+        } else {
+
+            $employee = Employee::where('user_id', $user->id)->first();
+
+            if($employee){
+                $employee->rg = $validated['rg'];
+                $employee->admission_date = $validated['admission_date'];
+                $employee->salary = $validated['salary'];
+
+                $employee->demission_date = $validated['demission_date'];
+                $employee->fantasy_name = $validated['fantasy_name'];
+
+                $employee->save();
+            } else {
+                Employee::create([
+                    'user_id' => $user->id,
+                    'rg' => $validated['rg'],
+                    'admission_date' => $validated['admission_date'],
+                    'salary' => $validated['salary'],
+                ]);
+            }
+        }
+
         return redirect()->route('user.edit', ['userId' => $user->id]);
     }
 

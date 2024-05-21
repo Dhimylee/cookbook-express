@@ -24,7 +24,7 @@ Route::get('/dashboard', function () {
     return view('home');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->prefix('users')->middleware(['hasRole:admin,hr'])->group(function () {
+Route::middleware(['hasRole:admin,hr', 'auth'])->prefix('users')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('user.index');
     Route::get('/show/{userId}', [UserController::class, 'show'])->name('user.show');
     Route::get('/edit/{userId}', [UserController::class, 'edit'])->name('user.edit');
@@ -47,6 +47,11 @@ Route::middleware('auth')->prefix('book')->group(function () {
     Route::delete('/{book}', [BookController::class, 'destroy'])->name('book.destroy');
 });
 
+Route::middleware('auth')->prefix('profile')->group(function(){
+    Route::get('/{userId}', [ProfileController::class, 'show'])->name('profile.show');
+    Route::get('/edit/{userId}', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/update/{userId}', [ProfileController::class, 'update'])->name('profile.update');
+});
 
 
 require __DIR__.'/auth.php';

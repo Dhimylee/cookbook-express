@@ -13,12 +13,10 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->string('rg')->unique();
             $table->date('admission_date');
             $table->date('demission_date')->nullable();
             $table->decimal('salary');
-            $table->unsignedBigInteger('role_id');
             $table->string('fantasy_name')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
