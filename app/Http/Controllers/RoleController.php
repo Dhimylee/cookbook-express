@@ -12,7 +12,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $roles = Role::all();
+        return view('role.index', compact('roles'));
     }
 
     /**
@@ -28,7 +29,11 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Role::create([
+            'name'=> $request->name
+        ]);
+
+        return redirect()->back();
     }
 
     /**
@@ -58,8 +63,37 @@ class RoleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Role $role)
+    public function delete(Request $request)
     {
-        //
+        $role = Role::find($request->id);
+        $error = '';
+
+        if($role->users->count() > 0){
+            $error = 'Não é possível deletar o cargo '.$role->name.' pois existem usuários associados a ele.';
+        } else {
+            $role->delete();
+        }
+
+        return redirect()->back()->with('error', $error);
+    }
+
+    public function activate(Request $request)
+    {
+        $role = Role::find($request->id);
+        $role->update([
+            'active' => 1
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function deactivate(Request $request)
+    {
+        $role = Role::find($request->id);
+        $role->update([
+            'active' => 0
+        ]);
+
+        return redirect()->back();
     }
 }

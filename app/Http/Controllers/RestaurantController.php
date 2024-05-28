@@ -12,7 +12,8 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        //
+        $restaurants = Restaurant::all();
+        return view('restaurant.index', compact('restaurants'));
     }
 
     /**
@@ -28,7 +29,11 @@ class RestaurantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Restaurant::create([
+            'name'=> $request->name
+        ]);
+
+        return redirect()->back();
     }
 
     /**
@@ -58,8 +63,17 @@ class RestaurantController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Restaurant $restaurant)
+    public function delete(Request $request)
     {
-        //
+        $restaurant = Restaurant::find($request->id);
+        $error = '';
+
+        if($restaurant->employees->count() > 0){
+            $error = 'Não é possível deletar o restaurante '.$restaurant->name.' pois existem usuários associados a ele.';
+        } else {
+            $restaurant->delete();
+        }
+
+        return redirect()->back()->with('error', $error);
     }
 }

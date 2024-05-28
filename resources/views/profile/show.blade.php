@@ -8,13 +8,18 @@
     <p>Nome: {{ $user->name }}</p>
     <p>E-mail: {{ $user->email }}</p>
     <p>Cargo: {{ App\Helpers\UserHelper::convertRoleName($user) }}</p>
+
     {{--! Inserir o restante das informações --}}
 
-    <form method="POST" action="{{ route('logout') }}">
-        @csrf
-        <button type="submit">Logout</button>
-    </form>
 
+    @if(Auth::user()->id == $user->id)
+        <a href="{{route('profile.edit')}}">Editar Perfil</a>
+
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit">Logout</button>
+        </form>
+    @endif
 @endsection
 
 @section('style')
@@ -25,5 +30,6 @@
 
 @section('script')
 <script>
+
 </script>
 @endsection
