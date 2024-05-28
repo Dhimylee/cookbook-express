@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\User;
+use App\Models\Employee_experience;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -61,5 +63,27 @@ class EmployeeController extends Controller
     public function destroy(Employee $employee)
     {
         //
+    }
+
+    /**
+     * Add experience to employee.
+     */
+    public function addExperience(Request $request)
+    {
+        Employee_experience::create([
+            'employee_id' => $request->employee_id,
+            'restaurant_id' => $request->restaurant_id,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date
+        ]);
+
+        return redirect()->back()->with('success','Experiência adicionada com sucesso!');
+    }
+
+    public function removeExperience(Request $request)
+    {
+        Employee_experience::find($request->id)->delete();
+
+        return redirect()->back()->with('success','Experiência removida com sucesso!');
     }
 }

@@ -15,11 +15,6 @@ class Restaurant extends Model
 
     public function employees()
     {
-        return $this->hasMany(Employee::class);
-    }
-
-    public function employee_experience()
-    {
-        return $this->hasMany(Employee_experience::class, 'restaurant_id', 'id');
+        return $this->hasMany(Employee_experience::class);
     }
 }

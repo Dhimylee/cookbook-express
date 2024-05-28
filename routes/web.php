@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\RestaurantController;
+use App\Http\Controllers\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,12 +35,6 @@ Route::middleware(['hasRole:admin,hr', 'auth'])->prefix('users')->group(function
     Route::delete('/edit', [UserController::class, 'destroy'])->name('user.destroy');
 });
 
-Route::middleware('auth')->prefix('profile')->group(function () {
-    Route::get('/', [ProfileController::class, 'show'])->name('show');
-    Route::get('/', [ProfileController::class, 'edit'])->name('edit');
-    Route::patch('/update', [ProfileController::class, 'update'])->name('update');
-});
-
 Route::middleware('auth')->prefix('book')->group(function () {
     Route::get('/', [BookController::class, 'index'])->name('book.index');
     Route::get('/create', [BookController::class, 'create'])->name('book.create');
@@ -48,9 +45,30 @@ Route::middleware('auth')->prefix('book')->group(function () {
 });
 
 Route::middleware('auth')->prefix('profile')->group(function(){
+    Route::get('/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::get('/{userId}', [ProfileController::class, 'show'])->name('profile.show');
-    Route::get('/edit/{userId}', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/update/{userId}', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/store', [ProfileController::class,'store'])->name('profile.store');
+});
+
+Route::middleware(['auth', 'hasRole:admin'])->prefix('role')->group(function () {
+    Route::get('/', [RoleController::class,'index'])->name('role.index');
+    Route::post('/store', [RoleController::class, 'store'])->name('role.store');
+    Route::post('/delete', [RoleController::class,'delete'])->name('role.delete');
+
+    Route::post('activate', [RoleController::class,'activate'])->name('role.activate');
+    Route::post('deactivate', [RoleController::class,'deactivate'])->name('role.deactivate');
+});
+
+Route::middleware(['auth', 'hasRole:admin,hr'])->prefix('restaurant')->group(function () {
+    Route::get('/', [RestaurantController::class,'index'])->name('restaurant.index');
+    Route::post('/store', [RestaurantController::class, 'store'])->name('restaurant.store');
+    Route::post('/delete', [RestaurantController::class,'delete'])->name('restaurant.delete');
+});
+
+Route::middleware('auth')->prefix('employee')->group(function () {
+    Route::post('/addExperience', [EmployeeController::class, 'addExperience'])->name('employee.addExperience');
+    Route::post('/removeExperience', [EmployeeController::class, 'removeExperience'])->name('employee.removeExperience');
 });
 
 
