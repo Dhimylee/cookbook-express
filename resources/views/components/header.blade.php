@@ -18,18 +18,23 @@
     }
     .search-input {
         width: 120px;
-        padding: 4px;
+        padding: 10px 10px 10px 40px;
         border: 1px solid #FF9E0B;
         border-radius: 30px;
         background-color: #FBF7ED;
     }
-    .focus\:ring-indigo-500:focus {
-    --tw-ring-color: #FF9E0B !important;
-}
+    .search-input:focus {
+        border-color: #FF9E0B; 
+        box-shadow: 0 0 5px rgb(227 124 31 / 10%);
+        outline: none;
+        font-size: 0.8rem;
+    }
     .search-icon {
         position: absolute;
         left: 10px;
         font-size: 16px;
+        top: 50%;
+        transform: translateY(-50%);
         color: #FF9E0B;
     }
 </style>
@@ -44,6 +49,4 @@
         <i class="ri-search-line search-icon"></i>
         <input type="text" class="search-input">
     </div>
-                 
-
 </header>
