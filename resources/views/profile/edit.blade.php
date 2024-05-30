@@ -48,7 +48,7 @@
             <form method="POST" action="{{ route('employee.removeExperience') }}">
                 @csrf
 
-                <input type="hidden" name="id" value="{{$user->id}}">
+                <input type="hidden" name="id" value="{{$experience->id}}">
                 <input type="hidden" name="restaurant" value="{{$experience->restaurant->id}}">
 
                 <button type="submit">Remover</button>
