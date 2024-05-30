@@ -17,6 +17,10 @@
         <a href="{{ route('restaurant.index') }}">Restaurantes</a>
     @endcan
 
+    @can('manageCategories', Auth::user())
+        <a href="{{ route('category.index') }}">Categorias</a>
+    @endcan
+
     <a href="{{ route('profile.show', Auth::user()->id) }}">Perfil</a>
 
     {{-- logout button --}}
