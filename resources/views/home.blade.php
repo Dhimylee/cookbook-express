@@ -21,6 +21,10 @@
         <a href="{{ route('category.index') }}">Categorias</a>
     @endcan
 
+    @can('manageMeasures', Auth::user())
+        <a href="{{ route('measure.index') }}">Medidas</a>
+    @endcan
+
     <a href="{{ route('profile.show', Auth::user()->id) }}">Perfil</a>
 
     {{-- logout button --}}
