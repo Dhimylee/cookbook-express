@@ -72,7 +72,7 @@ Route::middleware('auth')->prefix('employee')->group(function () {
     Route::post('/removeExperience', [EmployeeController::class, 'removeExperience'])->name('employee.removeExperience');
 });
 
-Route::middleware(['auth', 'hasRole:admin, chef'])->prefix('category')->group(function () {
+Route::middleware(['auth', 'hasRole:admin,chef'])->prefix('category')->group(function () {
     Route::get('/', [CategoryController::class, 'index'])->name('category.index');
     Route::post('/store', [CategoryController::class, 'store'])->name('category.store');
     Route::post('/update', [CategoryController::class, 'update'])->name('category.update');
