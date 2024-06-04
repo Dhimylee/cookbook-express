@@ -37,11 +37,119 @@
         transform: translateY(-50%);
         color: #FF9E0B;
     }
+    #menuToggle {
+        display: block;
+        position: relative;
+        /* top: 50px;
+        left: 50px; */
+        z-index: 1;
+    }
+    #menuToggle a {
+        text-decoration: none;
+        color: #FBF7ED;
+        transition: color 0.3s ease;
+    }
+    #menuToggle a:hover {
+        color: #8E3F1A;
+    }
+    #menuToggle input {
+        display: block;
+        width: 40px;
+        height: 32px;
+        position: absolute;
+        top: -7px;
+        left: -5px;
+        cursor: pointer;
+        opacity: 0;
+        z-index: 2; 
+    }
+    #menuToggle span {
+        display: block;
+        width: 33px;
+        height: 4px;
+        margin-bottom: 5px;
+        position: relative;
+        background: #FF9E0B;
+        border-radius: 3px;
+        z-index: 1;
+        transform-origin: 4px 0px;
+        transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),background 0.5s cubic-bezier(0.77,0.2,0.05,1.0), opacity 0.55s ease;
+    }
+    #menuToggle span:first-child {
+        transform-origin: 0% 0%;
+    }
+    #menuToggle span:nth-last-child(2) {
+        transform-origin: 0% 100%;
+    }
+    #menuToggle input:checked ~ span {
+        opacity: 1;
+        transform: rotate(45deg) translate(-2px, -1px);
+        background: #FBF7ED;
+    }
+    #menuToggle input:checked ~ span:nth-last-child(3) {
+        opacity: 0;
+        transform: rotate(0deg) scale(0.2, 0.2);
+    }
+    #menuToggle input:checked ~ span:nth-last-child(2) {
+        transform: rotate(-45deg) translate(0, -1px);
+    }
+    #menu {
+        position: absolute;
+        width: 300px;
+        margin: -50px 0 0 -40px;
+        padding: 50px;
+        padding-top: 125px;
+        background: #FF9E0B;
+        list-style-type: none;
+        -webkit-font-smoothing: antialiased;
+        transform-origin: 0% 0%;
+        transform: translate(-100%, 0);
+        transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+        height: 100vh;
+        min-height: 100%;
+        overflow-y: auto;
+    }
+    #menu li {
+        padding: 10px 0;
+        font-size: 22px;
+    }
+    #menuToggle input:checked ~ ul {
+        transform: none;
+    }
+
 </style>
 <header class="header">
-    <div>
-        <img src="{{ asset('menu-open.png') }}" alt="Logo" width="30">
-    </div>
+    <nav role="navigation">
+        <div id="menuToggle">
+            <input type="checkbox" />
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+            <ul id="menu">
+                @can('viewUsers', Auth::user())
+                    <a href="{{ route('user.index') }}"><li>Usuários</li></a>
+                @endcan
+
+                @can('viewRoles', Auth::user())
+                    <a href="{{ route('role.index') }}"><li>Cargos</li></a>
+                @endcan
+
+                @can('manageRestaurants', Auth::user())
+                    <a href="{{ route('restaurant.index') }}"><li>Restaurantes</li></a>
+                @endcan
+
+                @can('manageCategories', Auth::user())
+                    <a href="{{ route('category.index') }}"><li>Categorias</li></a>
+                @endcan
+
+                @can('manageMeasures', Auth::user())
+                    <a href="{{ route('measure.index') }}"><li>Medidas</li></a>
+                @endcan
+            </ul>
+        </div>
+    </nav>
     <div>
         <img src="{{ asset('logo-header.png') }}" alt="Logo" width="150">
     </div>
