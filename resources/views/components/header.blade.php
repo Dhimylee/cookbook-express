@@ -108,6 +108,10 @@
         height: 100vh;
         min-height: 100%;
         overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 100vh;
     }
     #menu li {
         padding: 10px 0;
@@ -115,6 +119,25 @@
     }
     #menuToggle input:checked ~ ul {
         transform: none;
+    }
+    .custom-button {
+        /* Remover estilos padrões */
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        border: none;
+        background: none;
+        padding: 0;
+        margin: 0;
+        outline: none;
+        color: #FBF7ED;
+        padding: 10px 8px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .custom-button:hover {
+        background-color: #0056b3;
     }
 
 </style>
@@ -128,6 +151,7 @@
             <span></span>
 
             <ul id="menu">
+                <div>
                 @can('viewUsers', Auth::user())
                     <a href="{{ route('user.index') }}"><li>Usuários</li></a>
                 @endcan
@@ -147,7 +171,18 @@
                 @can('manageMeasures', Auth::user())
                     <a href="{{ route('measure.index') }}"><li>Medidas</li></a>
                 @endcan
+                </div>
+                <div>
+                <li>
+                    {{-- logout button --}}
+                    <form method="POST" action="{{ route('logout') }}" style="display: flex; align-items: center;">
+                        @csrf
+                        <i class="ri-logout-box-line"></i><button type="submit" class="custom-button">Sair</button>
+                    </form>
+                </li>
+                </div>
             </ul>
+
         </div>
     </nav>
     <div>
