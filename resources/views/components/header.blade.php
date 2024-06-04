@@ -191,5 +191,8 @@
     <div class="search-container">
         <i class="ri-search-line search-icon"></i>
         <input type="text" class="search-input">
+        <div>
+            <a href="{{ route('profile.show', Auth::user()->id) }}" style="text-decoration: none;"><i class="ri-user-line"></i></a>
+        </div>
     </div>
 </header>
