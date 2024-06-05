@@ -29,4 +29,9 @@ class UserPolicy
     public function manageMeasures(User $user) {
         return $user->role->name === 'admin' || $user->role->name === 'chef';
     }
+
+    public function manageIngredients(User $user)
+    {
+        return $user->role->name === 'admin' || $user->role->name === 'chef';
+    }
 }

@@ -26,7 +26,7 @@
         background-color: #FBF7ED;
     }
     .search-input:focus {
-        border-color: #FF9E0B; 
+        border-color: #FF9E0B;
         box-shadow: 0 0 5px rgb(227 124 31 / 10%);
         outline: none;
         font-size: 0.8rem;
@@ -70,7 +70,7 @@
         left: -5px;
         cursor: pointer;
         opacity: 0;
-        z-index: 2; 
+        z-index: 2;
     }
     #menuToggle span {
         display: block;
@@ -179,6 +179,9 @@
 
                 @can('manageMeasures', Auth::user())
                     <a href="{{ route('measure.index') }}"><li>Medidas</li></a>
+                @endcan
+                @can('manageIngredients', Auth::user())
+                    <a href="{{ route('ingredient.index') }}"><li>Ingredientes</li></a>
                 @endcan
                 </div>
                 <div>
