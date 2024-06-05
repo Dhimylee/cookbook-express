@@ -9,6 +9,7 @@ use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MeasureController;
+use App\Http\Controllers\IngredientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,6 +86,13 @@ Route::middleware(['auth', 'hasRole:admin,chef'])->prefix('measure')->group(func
     Route::post('/store', [MeasureController::class, 'store'])->name('measure.store');
     Route::post('/update', [MeasureController::class, 'update'])->name('measure.update');
     Route::post('/delete', [MeasureController::class, 'delete'])->name('measure.delete');
+});
+
+Route::middleware(['auth', 'hasRole:admin,chef'])->prefix('ingredient')->group(function () {
+    Route::get('/', [IngredientController::class, 'index'])->name('ingredient.index');
+    Route::post('/store', [IngredientController::class, 'store'])->name('ingredient.store');
+    Route::post('/update', [IngredientController::class, 'update'])->name('ingredient.update');
+    Route::post('/delete', [IngredientController::class, 'delete'])->name('ingredient.delete');
 });
 
 require __DIR__.'/auth.php';
