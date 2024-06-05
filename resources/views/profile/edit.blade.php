@@ -105,7 +105,6 @@
         <p>{{ session('success') }}</p>
     @endif
 
-    <h1 class="perfil__header">Informações Pessoais</h1>
     <div class="perfil__container">
         <aside class="nome__col">
             <h2 class="perfil__title">{{$user->name}}</h2>
