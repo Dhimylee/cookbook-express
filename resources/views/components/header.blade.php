@@ -15,10 +15,12 @@
         position: relative;
         display: flex;
         align-items: center;
+        width: 200px;
+        gap: 20px;
     }
     .search-input {
         width: 120px;
-        padding: 10px 10px 10px 40px;
+        padding: 0px 10px 0px 40px;
         border: 1px solid #FF9E0B;
         border-radius: 30px;
         background-color: #FBF7ED;
@@ -36,6 +38,13 @@
         top: 50%;
         transform: translateY(-50%);
         color: #FF9E0B;
+    }
+    .search-icon--menu {
+        font-size: 20px;
+        color: #FBF7ED;
+        background-color: #FF9E0B;
+        padding: 10px;
+        border-radius: 20px;
     }
     #menuToggle {
         display: block;
@@ -186,13 +195,13 @@
         </div>
     </nav>
     <div>
-        <img src="{{ asset('logo-header.png') }}" alt="Logo" width="150">
+        <img src="{{ asset('logo-header.png') }}" alt="Logo" width="150" style="margin-left: 180px;">
     </div>
     <div class="search-container">
         <i class="ri-search-line search-icon"></i>
         <input type="text" class="search-input">
         <div>
-            <a href="{{ route('profile.show', Auth::user()->id) }}" style="text-decoration: none;"><i class="ri-user-line"></i></a>
+            <a href="{{ route('profile.show', Auth::user()->id) }}" style="text-decoration: none;"><i class="ri-user-line search-icon--menu"></i></a>
         </div>
     </div>
 </header>
