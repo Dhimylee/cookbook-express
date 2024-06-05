@@ -5,11 +5,11 @@
 @section('content')
     <h1>Home</h1>
 
-    @can('viewUsers', Auth::user())
+    <!-- @can('viewUsers', Auth::user())
         <a href="{{ route('user.index') }}">Usuários</a>
-    @endcan
+    @endcan -->
 
-    @can('viewRoles', Auth::user())
+    <!-- @can('viewRoles', Auth::user())
         <a href="{{ route('role.index') }}">Cargos</a>
     @endcan
 
@@ -17,13 +17,15 @@
         <a href="{{ route('restaurant.index') }}">Restaurantes</a>
     @endcan
 
-    <a href="{{ route('profile.show', Auth::user()->id) }}">Perfil</a>
+    @can('manageCategories', Auth::user())
+        <a href="{{ route('category.index') }}">Categorias</a>
+    @endcan
 
-    {{-- logout button --}}
-    <form method="POST" action="{{ route('logout') }}">
-        @csrf
-        <button type="submit">Logout</button>
-    </form>
+    @can('manageMeasures', Auth::user())
+        <a href="{{ route('measure.index') }}">Medidas</a>
+    @endcan -->
+
+    <a href="{{ route('profile.show', Auth::user()->id) }}">Perfil</a>
 
 @endsection
 

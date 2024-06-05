@@ -21,4 +21,12 @@ class UserPolicy
     public function manageRestaurants(User $user) {
         return $user->role->name === 'admin' || $user->role->name === 'hr';
     }
+
+    public function manageCategories(User $user) {
+        return $user->role->name === 'admin' || $user->role->name === 'chef';
+    }
+
+    public function manageMeasures(User $user) {
+        return $user->role->name === 'admin' || $user->role->name === 'chef';
+    }
 }

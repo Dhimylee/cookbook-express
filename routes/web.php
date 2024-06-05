@@ -7,6 +7,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\MeasureController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,5 +73,18 @@ Route::middleware('auth')->prefix('employee')->group(function () {
     Route::post('/removeExperience', [EmployeeController::class, 'removeExperience'])->name('employee.removeExperience');
 });
 
+Route::middleware(['auth', 'hasRole:admin,chef'])->prefix('category')->group(function () {
+    Route::get('/', [CategoryController::class, 'index'])->name('category.index');
+    Route::post('/store', [CategoryController::class, 'store'])->name('category.store');
+    Route::post('/update', [CategoryController::class, 'update'])->name('category.update');
+    Route::post('/delete', [CategoryController::class, 'delete'])->name('category.delete');
+});
+
+Route::middleware(['auth', 'hasRole:admin,chef'])->prefix('measure')->group(function () {
+    Route::get('/', [MeasureController::class, 'index'])->name('measure.index');
+    Route::post('/store', [MeasureController::class, 'store'])->name('measure.store');
+    Route::post('/update', [MeasureController::class, 'update'])->name('measure.update');
+    Route::post('/delete', [MeasureController::class, 'delete'])->name('measure.delete');
+});
 
 require __DIR__.'/auth.php';
