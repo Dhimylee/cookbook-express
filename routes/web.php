@@ -10,6 +10,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MeasureController;
 use App\Http\Controllers\IngredientController;
+use App\Http\Controllers\RecipeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -93,6 +94,26 @@ Route::middleware(['auth', 'hasRole:admin,chef'])->prefix('ingredient')->group(f
     Route::post('/store', [IngredientController::class, 'store'])->name('ingredient.store');
     Route::post('/update', [IngredientController::class, 'update'])->name('ingredient.update');
     Route::post('/delete', [IngredientController::class, 'delete'])->name('ingredient.delete');
+});
+
+Route::middleware(['auth', 'hasRole:admin,chef'])->prefix('ingredient')->group(function () {
+    Route::get('/', [IngredientController::class, 'index'])->name('ingredient.index');
+    Route::post('/store', [IngredientController::class, 'store'])->name('ingredient.store');
+    Route::post('/update', [IngredientController::class, 'update'])->name('ingredient.update');
+    Route::post('/delete', [IngredientController::class, 'delete'])->name('ingredient.delete');
+});
+
+Route::middleware(['auth'])->prefix('recipe')->group(function () {
+    Route::get('/', [RecipeController::class, 'index'])->name('recipe.index');
+    Route::get('/show/{id}', [RecipeController::class,'show'])->name('recipe.show');
+
+    Route::middleware(['hasRole:admin,chef'])->group(function () {
+        Route::get('/create', [RecipeController::class, 'create'])->name('recipe.create');
+        Route::post('/store', [RecipeController::class, 'store'])->name('recipe.store');
+        Route::get('/{recipe}/edit', [RecipeController::class, 'edit'])->name('recipe.edit');
+        Route::patch('/{id}', [RecipeController::class, 'update'])->name('recipe.update');
+        Route::delete('/{id}', [RecipeController::class, 'destroy'])->name('recipe.destroy');
+    });
 });
 
 require __DIR__.'/auth.php';

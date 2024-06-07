@@ -34,4 +34,9 @@ class UserPolicy
     {
         return $user->role->name === 'admin' || $user->role->name === 'chef';
     }
+
+    public function manageRecipes(User $user)
+    {
+        return $user->role->name === 'admin'|| $user->role->name === 'chef';
+    }
 }

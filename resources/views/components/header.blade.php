@@ -161,28 +161,31 @@
 
             <ul id="menu">
                 <div>
-                @can('viewUsers', Auth::user())
-                    <a href="{{ route('user.index') }}"><li>Usuários</li></a>
-                @endcan
+                    <a href="{{route('recipe.index')}}"><li>Receitas</li></a>
 
-                @can('viewRoles', Auth::user())
-                    <a href="{{ route('role.index') }}"><li>Cargos</li></a>
-                @endcan
+                    @can('manageCategories', Auth::user())
+                        <a href="{{ route('category.index') }}"><li>Categorias</li></a>
+                    @endcan
 
-                @can('manageRestaurants', Auth::user())
-                    <a href="{{ route('restaurant.index') }}"><li>Restaurantes</li></a>
-                @endcan
+                    @can('manageMeasures', Auth::user())
+                        <a href="{{ route('measure.index') }}"><li>Medidas</li></a>
+                    @endcan
 
-                @can('manageCategories', Auth::user())
-                    <a href="{{ route('category.index') }}"><li>Categorias</li></a>
-                @endcan
+                    @can('manageIngredients', Auth::user())
+                        <a href="{{ route('ingredient.index') }}"><li>Ingredientes</li></a>
+                    @endcan
 
-                @can('manageMeasures', Auth::user())
-                    <a href="{{ route('measure.index') }}"><li>Medidas</li></a>
-                @endcan
-                @can('manageIngredients', Auth::user())
-                    <a href="{{ route('ingredient.index') }}"><li>Ingredientes</li></a>
-                @endcan
+                    @can('manageRestaurants', Auth::user())
+                        <a href="{{ route('restaurant.index') }}"><li>Restaurantes</li></a>
+                    @endcan
+
+                    @can('viewUsers', Auth::user())
+                        <a href="{{ route('user.index') }}"><li>Usuários</li></a>
+                    @endcan
+
+                    @can('viewRoles', Auth::user())
+                        <a href="{{ route('role.index') }}"><li>Cargos</li></a>
+                    @endcan
                 </div>
                 <div>
                 <li>

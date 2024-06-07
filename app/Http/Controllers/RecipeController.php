@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Recipe;
 use Illuminate\Http\Request;
+use App\Models\Recipe;
+use App\Models\Ingredient;
+use App\Models\Category;
+use App\Models\Measure;
 
 class RecipeController extends Controller
 {
@@ -12,7 +15,7 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        //
+        return view('recipe.index', ['recipes' => Recipe::all()]);
     }
 
     /**
@@ -20,7 +23,11 @@ class RecipeController extends Controller
      */
     public function create()
     {
-        //
+        $ingredients = Ingredient::all();
+        $categories = Category::all();
+        $measures = Measure::all();
+
+        return view ('recipe.create', compact('ingredients', 'categories', 'measures'));
     }
 
     /**
@@ -28,7 +35,30 @@ class RecipeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'ingredients' => 'required|array',
+            'ingredients.*' => 'required|interger',
+            'employee' => 'required|interger',
+            'portions' => 'required|interger',
+            'category' => 'required|interger',
+        ]);
+
+        $recipe = Recipe::create([
+            'name'=> $request->name,
+            'employee_id' => $request->employee,
+            'creation_date' => today(),
+            'portions' => $request->portions,
+            'category_id' => $request->category,
+            'published' => false,
+        ]);
+
+        foreach($request->ingredients as $ingredientId) {
+            $ingredient = Recipe::find($ingredientId);
+            $recipe->ingredients()->attach($ingredient);
+        }
+
+        return redirect()->route('recipe.index')->with('success','Receita cadastrada com sucesso!');
     }
 
     /**
