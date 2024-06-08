@@ -145,9 +145,6 @@
         cursor: pointer;
         transition: background-color 0.3s;
     }
-    .custom-button:hover {
-        background-color: #0056b3;
-    }
 
 </style>
 <header class="header">

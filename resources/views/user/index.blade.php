@@ -12,6 +12,10 @@
         padding: 30px;
         border-radius: 16px;
     }
+    .box-usuariosWrapper h1 {
+        font-size: 28px;
+        color: #8E3F1A;
+    }
     .box-usuariosWrapper table {
         /* margin: 5px; */
         width: 100%;
