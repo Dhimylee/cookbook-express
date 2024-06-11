@@ -25,7 +25,7 @@
         <a href="{{ route('measure.index') }}">Medidas</a>
     @endcan -->
 
-    <a href="{{ route('profile.show', Auth::user()->id) }}">Perfil</a>
+    <!-- <a href="{{ route('profile.show', Auth::user()->id) }}">Perfil</a> -->
 
 @endsection
 
