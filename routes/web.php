@@ -110,9 +110,23 @@ Route::middleware(['auth'])->prefix('recipe')->group(function () {
     Route::middleware(['hasRole:admin,chef'])->group(function () {
         Route::get('/create', [RecipeController::class, 'create'])->name('recipe.create');
         Route::post('/store', [RecipeController::class, 'store'])->name('recipe.store');
-        Route::get('/{recipe}/edit', [RecipeController::class, 'edit'])->name('recipe.edit');
-        Route::patch('/{id}', [RecipeController::class, 'update'])->name('recipe.update');
-        Route::delete('/{id}', [RecipeController::class, 'destroy'])->name('recipe.destroy');
+        Route::get('/edit/{id}', [RecipeController::class, 'edit'])->name('recipe.edit');
+        Route::patch('/update', [RecipeController::class, 'update'])->name('recipe.update');
+        Route::get('/{id}', [RecipeController::class, 'destroy'])->name('recipe.delete');
+    });
+});
+
+Route::middleware(['auth'])->prefix('book')->group(function () {
+    Route::get('/', [BookController::class, 'index'])->name('book.index');
+    Route::get('/show/{id}', [BookController::class,'show'])->name('book.show');
+
+    Route::middleware(['hasRole:admin,publisher'])->group(function () {
+        Route::get('/create', [BookController::class, 'create'])->name('book.create');
+        Route::post('/store', [BookController::class, 'store'])->name('book.store');
+        Route::get('/publish/{id}', [BookController::class, 'publish'])->name('book.publish');
+        Route::get('/{book}/edit', [BookController::class, 'edit'])->name('book.edit');
+        Route::patch('/update', [BookController::class, 'update'])->name('book.update');
+        Route::get('/{id}', [BookController::class, 'destroy'])->name('book.delete');
     });
 });
 

@@ -79,7 +79,7 @@ class MeasureController extends Controller
     {
         $measure = Measure::find($request->id);
 
-        if($measure->ingredient_recipes->count() > 0) {
+        if($measure->ingredientRecipes->count() > 0) {
             return redirect()->route('measure.index')->with('error', 'A medida não pode ser deletada porque possui receitas associadas.');
         }
 

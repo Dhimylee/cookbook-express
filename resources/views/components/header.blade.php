@@ -161,6 +161,7 @@
 
             <ul id="menu">
                 <div>
+                    <a href="{{route('book.index')}}"><li>Livros</li></a>
                     <a href="{{route('recipe.index')}}"><li>Receitas</li></a>
 
                     @can('manageCategories', Auth::user())

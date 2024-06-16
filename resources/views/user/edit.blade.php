@@ -1,66 +1,3 @@
-<style>
-    main {
-        background-color: #FBF7ED;
-        height: 95%;
-    }
-    .editar_usuario__header {
-        color: #FF9E0B;
-        font-size: 36px;
-        font-weight: 500;
-        letter-spacing: normal;
-        line-height: 120%;
-        padding: 20px 0px 20px 50px;
-    }
-    .salvar, .voltar {
-        background-color: #FBF7ED;
-        border: 1px solid #FF9E0B;
-        border-radius: 8px;
-        color: #FF9E0B;
-        font-size: 14px;
-        padding: 8px 16px;
-    }
-    .voltar {
-        padding: 10px 16px;
-    }
-    .usuario__container {
-        background-color: #FFFFFF;   
-        padding: 20px;
-        margin-bottom: 20px; /* Adicionado para espaçar do título seguinte */
-    }
-    .form-group label {
-        color: rgba(0, 0, 0, .4);
-        font-weight: 400;
-        padding-bottom: 5px;
-        display: block;
-        margin-left: 10%;
-    }
-    .form-group input,
-    .form-group select {
-        background-color: #fff;
-        border: 1px solid rgba(234, 195, 157, .5);
-        border-radius: 4px;
-        color: rgba(0, 0, 0, .6);
-        font-size: 16px;
-        font-weight: 400;
-        height: 48px;
-        line-height: 48px;
-        padding: 0 10px;
-        transition: border .2s ease-in-out;
-        width: 50%;
-        margin-left: 10%;
-        margin-bottom: 30px;
-    }
-    .form-buttons {
-        display: flex;
-        justify-content: space-between;
-        margin: 20px 10%;
-    }
-    .form-buttons button, .form-buttons a {
-        width: 48%;
-        text-align: center;
-    }
-</style>
-
 @extends('components.base')
 
 @section('title', 'Editar Usuário')
@@ -126,4 +63,66 @@
 @endsection
 
 @section('style')
+<style>
+    main {
+        background-color: #FBF7ED;
+        height: 95%;
+    }
+    .editar_usuario__header {
+        color: #FF9E0B;
+        font-size: 36px;
+        font-weight: 500;
+        letter-spacing: normal;
+        line-height: 120%;
+        padding: 20px 0px 20px 50px;
+    }
+    .salvar, .voltar {
+        background-color: #FBF7ED;
+        border: 1px solid #FF9E0B;
+        border-radius: 8px;
+        color: #FF9E0B;
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+    .voltar {
+        padding: 10px 16px;
+    }
+    .usuario__container {
+        background-color: #FFFFFF;
+        padding: 20px;
+        margin-bottom: 20px; /* Adicionado para espaçar do título seguinte */
+    }
+    .form-group label {
+        color: rgba(0, 0, 0, .4);
+        font-weight: 400;
+        padding-bottom: 5px;
+        display: block;
+        margin-left: 10%;
+    }
+    .form-group input,
+    .form-group select {
+        background-color: #fff;
+        border: 1px solid rgba(234, 195, 157, .5);
+        border-radius: 4px;
+        color: rgba(0, 0, 0, .6);
+        font-size: 16px;
+        font-weight: 400;
+        height: 48px;
+        line-height: 48px;
+        padding: 0 10px;
+        transition: border .2s ease-in-out;
+        width: 50%;
+        margin-left: 10%;
+        margin-bottom: 30px;
+    }
+    .form-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin: 20px 10%;
+    }
+    .form-buttons button, .form-buttons a {
+        width: 48%;
+        text-align: center;
+    }
+</style>
 @endsection
