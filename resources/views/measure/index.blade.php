@@ -1,3 +1,38 @@
+@extends('components.base')
+
+@section('title', 'Medidas')
+
+@section('content')
+    <h1 class="titulo__header">Medidas</h1>
+
+    @if(session('error'))
+        <p>{{session('error')}}</p>
+    @endif
+
+    @foreach ($measures as $measure)
+        <div class="d-flex flex-row listagem">
+            <h3>{{ $measure->name }}</h3>
+
+            <form action="{{route('measure.delete')}}" method="POST" class="formulario">
+                @csrf
+                <input type="hidden" name="id" value="{{$measure->id}}">
+                <button type="submit" class="salvar">Deletar</button>
+            </form>
+
+        </div>
+    @endforeach
+
+    <h1 class="titulo__header">Cadastrar medida</h1>
+
+    <form action="{{route('measure.store')}}" method="POST" class="formulario">
+        @csrf
+        <input type="text" name="name" placeholder="Nome da medida">
+        <button type="submit" class="salvar">Criar</button>
+    </form>
+
+@endsection
+
+@section('style')
 <style>
     .salvar{
         background-color: #FBF7ED;
@@ -54,44 +89,6 @@
         padding-bottom: 5px;
         font-size: 17px;
     }
-</style>
-
-@extends('components.base')
-
-@section('title', 'Medidas')
-
-@section('content')
-    <h1 class="titulo__header">Medidas</h1>
-
-    @if(session('error'))
-        <p>{{session('error')}}</p>
-    @endif
-
-    @foreach ($measures as $measure)
-        <div class="d-flex flex-row listagem">
-            <h3>{{ $measure->name }}</h3>
-
-            <form action="{{route('measure.delete')}}" method="POST" class="formulario">
-                @csrf
-                <input type="hidden" name="id" value="{{$measure->id}}">
-                <button type="submit" class="salvar">Deletar</button>
-            </form>
-
-        </div>
-    @endforeach
-
-    <h1 class="titulo__header">Cadastrar medida</h1>
-
-    <form action="{{route('measure.store')}}" method="POST" class="formulario">
-        @csrf
-        <input type="text" name="name" placeholder="Nome da medida">
-        <button type="submit" class="salvar">Criar</button>
-    </form>
-
-@endsection
-
-@section('style')
-<style>
 </style>
 @endsection
 

@@ -1,54 +1,3 @@
-<style>
-    main {
-        background-color: #FBF7ED;
-        height: 100vh;
-    }
-
-    .box-restaurant {
-        padding: 120px 100px;
-    }
-
-    .box-restarant_title {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .box-restaurant_cadastrar {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .box-restaurantWrapper {
-        background-color: #fff;
-        border: 1px solid #FF9E0B;
-        padding: 30px;
-        border-radius: 16px;
-    }
-
-    .box-restaurantWrapper h1 {
-        font-size: 28px;
-        color: #8E3F1A;
-    }
-
-    .box-restaurantWrapper table {
-        /* margin: 5px; */
-        width: 100%;
-    }
-
-    .box-restaurantWrapper thead {
-        background-color: #FF9E0B;
-    }
-
-    .box-restaurantWrapper th {
-        padding: 8px;
-        color: #FBF7ED;
-    }
-
-    .box-restaurantWrapper td {
-        padding: 10px;
-        border-bottom: 1px solid #FF9E0B;
-    }
-</style>
 @extends('components.base')
 
 @section('title', 'Home')
@@ -113,6 +62,55 @@
 
 @section('style')
 <style>
+    main {
+        background-color: #FBF7ED;
+        height: 100vh;
+    }
+
+    .box-restaurant {
+        padding: 120px 100px;
+    }
+
+    .box-restarant_title {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .box-restaurant_cadastrar {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .box-restaurantWrapper {
+        background-color: #fff;
+        border: 1px solid #FF9E0B;
+        padding: 30px;
+        border-radius: 16px;
+    }
+
+    .box-restaurantWrapper h1 {
+        font-size: 28px;
+        color: #8E3F1A;
+    }
+
+    .box-restaurantWrapper table {
+        /* margin: 5px; */
+        width: 100%;
+    }
+
+    .box-restaurantWrapper thead {
+        background-color: #FF9E0B;
+    }
+
+    .box-restaurantWrapper th {
+        padding: 8px;
+        color: #FBF7ED;
+    }
+
+    .box-restaurantWrapper td {
+        padding: 10px;
+        border-bottom: 1px solid #FF9E0B;
+    }
 </style>
 @endsection
 
