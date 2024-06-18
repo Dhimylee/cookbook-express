@@ -58,11 +58,20 @@
                                     <option value="{{$ingredient->id}}">{{$ingredient->name}}</option>
                                 @endforeach
                             </select>
+            {{-- Módulo de ingrediente --}}
+            <template>
+                <hr>
+                <div class="d-flex flex-row">
+                    <select class="form-control" name="ingredient_ids[]" required>
+                        @foreach ($ingredients as $ingredient)
+                            <option value="{{$ingredient->id}}">{{$ingredient->name}}</option>
+                        @endforeach
+                    </select>
 
-                    <input type="number" step="0.1" name="quantities[]" class="form-control">
-                    <select name="measure_ids[]" class="form-control">
+                    <input type="number" step="0.1" name="quantities[]" class="form-control" required>
+                    <select name="measure_ids[]" class="form-control" required>
                         @foreach ($measures as $measure)
-                            <option value="{{$measure->id}}" required>{{$measure->name}}</option>
+                            <option value="{{$measure->id}}">{{$measure->name}}</option>
                         @endforeach
                     </select>
                 </div>
