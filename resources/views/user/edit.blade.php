@@ -4,6 +4,11 @@
 
 @section('content')
 <h1 class="editar_usuario__header">Editar Usuário</h1>
+
+@if(session('error'))
+    <p class="text-danger">{{session('error')}}</p>
+@endif
+
 <form action="{{ route('user.update') }}" method="post" class="usuario__container">
     @csrf
     @method('PATCH')

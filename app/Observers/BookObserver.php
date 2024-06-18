@@ -11,7 +11,18 @@ class BookObserver
      */
     public function created(Book $book): void
     {
-        //
+        foreach ($book->publications as $publication) {
+            $recipe = $publication->recipe;
+
+            if ($book->published_at) {
+                $recipe->published = true;
+
+            } else {
+                $this->updateRecipePublicationStatus($recipe);
+            }
+
+            $recipe->save();
+        }
     }
 
     /**
@@ -21,6 +32,7 @@ class BookObserver
     {
         //
     }
+
     public function saved(Book $book): void
     {
         foreach ($book->publications as $publication) {

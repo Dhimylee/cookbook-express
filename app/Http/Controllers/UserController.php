@@ -33,6 +33,7 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
+        dd($request->all());
         $validated = $request->validate([
             'name' => 'required',
             'email' => 'required',
@@ -46,6 +47,17 @@ class UserController extends Controller
         ]);
 
         $user = User::find($request->userId);
+        $employeeId = $user->employee->id ?? null;
+        $rgAlreadyRegistered = Employee::where('rg', $validated['rg'])
+            ->when(isset($employeeId),function($q, $employeeId){
+                $q->where('id', '!=', $employeeId);
+            })
+            ->first();
+
+        if($rgAlreadyRegistered){
+            return back()->with('error', 'O RG informado já está cadastrado!');
+        }
+
         $user->name = $validated['name'];
         $user->email = $validated['email'];
         $user->role_id = $validated['role_id'];
