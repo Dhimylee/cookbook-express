@@ -47,11 +47,6 @@
 
         </div>
 
-        <div class="form-group">
-            <label for="will_publish">Deseja publicar o livro?</label>
-            <input type="checkbox" name="will_publish" id="will_publish">
-        </div>
-
         <input class="btn btn-success" type="submit" value="Cadastrar">
     </form>
     @else

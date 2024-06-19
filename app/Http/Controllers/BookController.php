@@ -46,11 +46,16 @@ class BookController extends Controller
             'isbn' => 'required|integer',
         ]);
 
+        $isbnAlreadyExists = Book::where('isbn', $request->isbn)->exists();
+        if($isbnAlreadyExists){
+            return redirect()->route('book.create')->with('error','ISBN já cadastrado!');
+        }
+
         $book = Book::create([
             'title'=> $request->title,
             'employee_id' => $request->employee_id,
             'isbn' => $request->isbn,
-            'published_at' => $request->will_publish ? now() : null,
+            'published_at' => null,
         ]);
 
         foreach ($request->recipe_ids as $recipeId) {
