@@ -16,7 +16,7 @@
         @endif
 
         @if(isset(Auth::user()->employee->id))
-            <form action="{{route('recipe.store')}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('recipe.store')}}" method="post" enctype="multipart/form-data" class="form-recipe">
                 @csrf
 
                 <input type="hidden" name="employee_id" value="{{Auth::user()->employee->id}}">
@@ -47,39 +47,29 @@
 
                 <div class="form-group" id="ingredients">
                     <label for="ingredients">Ingredientes</label>
-                    <button type="button" id="addIngredient">Adicionar ingrediente</button>
+                    <button type="button" id="addIngredient" class="btn btn-secondary">Adicionar ingrediente</button>
 
                     {{-- Módulo de ingrediente --}}
                     <template>
                         <hr>
-                        <div class="d-flex flex-row">
+                        <div class="d-flex flex-row align-items-center mt-2">
                             <select class="form-control" name="ingredient_ids[]" required>
                                 @foreach ($ingredients as $ingredient)
                                     <option value="{{$ingredient->id}}">{{$ingredient->name}}</option>
                                 @endforeach
                             </select>
-            {{-- Módulo de ingrediente --}}
-            <template>
-                <hr>
-                <div class="d-flex flex-row">
-                    <select class="form-control" name="ingredient_ids[]" required>
-                        @foreach ($ingredients as $ingredient)
-                            <option value="{{$ingredient->id}}">{{$ingredient->name}}</option>
-                        @endforeach
-                    </select>
 
-                    <input type="number" step="0.1" name="quantities[]" class="form-control" required>
-                    <select name="measure_ids[]" class="form-control" required>
-                        @foreach ($measures as $measure)
-                            <option value="{{$measure->id}}">{{$measure->name}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </template>
-
+                            <input type="number" step="0.1" name="quantities[]" class="form-control mx-2" required>
+                            <select name="measure_ids[]" class="form-control" required>
+                                @foreach ($measures as $measure)
+                                    <option value="{{$measure->id}}">{{$measure->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </template>
                 </div>
 
-                <input class="btn btn-success" type="submit" value="Cadastrar">
+                <input class="btn btn-success mt-3" type="submit" value="Cadastrar">
             </form>
         @else
             <h1 class="text-danger">Você não possui perfil de funcionário, portanto não pode cadastrar receitas.</h1>
@@ -106,22 +96,87 @@
         border-radius: 16px;
     }
 
-    .recipe-card {
-        text-decoration: none;
-        transition: all 0.3s;
+    .form-recipe .form-group {
+        margin-bottom: 20px;
     }
 
-    .recipe-card::hover {
-        transform: scale(1.1);
+    .form-recipe .form-control {
+        background-color: #fff;
+        border: 1px solid rgba(234, 195, 157, .5);
+        border-radius: 4px;
+        height: 48px;
+        color: rgba(0, 0, 0, .6);
+        font-size: 16px;
+        padding: 0 10px;
+        transition: border .2s ease-in-out;
+    }
+
+    .form-recipe label {
+        color: rgba(0, 0, 0, .4);
+        font-weight: 400;
+        padding-bottom: 5px;
+        display: block;
+    }
+
+    .btn {
+        background-color: #FBF7ED;
+        border: 1px solid #FF9E0B;
+        border-radius: 8px;
+        color: #FF9E0B;
+        font-size: 14px;
+        padding: 12px 18px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .btn:hover {
+        background-color: #FF9E0B;
+        color: #FBF7ED;
+    }
+
+    .btn-secondary {
+        background-color: #fbeded;
+        border: 1px solid #a2363b;
+        color: #e41313;
+    }
+
+    .d-flex {
+        display: flex;
+    }
+
+    .align-items-center {
+        align-items: center;
+    }
+
+    .mt-2 {
+        margin-top: 10px;
+    }
+
+    .mt-3 {
+        margin-top: 20px;
+    }
+
+    hr {
+        border: 1px solid #FF9E0B;
+        width: 100%;
+        margin: 20px 0;
+    }
+    h1 {
+        color: #FF9E0B;
+        font-size: 36px;
+        font-weight: 500;
+        letter-spacing: normal;
+        line-height: 120%;
     }
 </style>
 @endsection
 
 @section('script')
 <script>
-    $('#addIngredient').click(function () {
-        var template = $('template').html();
-        $('#ingredients').append(template);
+    document.getElementById('addIngredient').addEventListener('click', function () {
+        var template = document.querySelector('template').content.cloneNode(true);
+        document.getElementById('ingredients').appendChild(template);
     });
 </script>
 @endsection
