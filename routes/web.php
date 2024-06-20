@@ -11,6 +11,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MeasureController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\TastingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -127,6 +128,18 @@ Route::middleware(['auth'])->prefix('book')->group(function () {
         Route::get('/{book}/edit', [BookController::class, 'edit'])->name('book.edit');
         Route::patch('/update', [BookController::class, 'update'])->name('book.update');
         Route::get('/{id}', [BookController::class, 'destroy'])->name('book.delete');
+    });
+});
+
+Route::middleware(['auth'])->prefix('tasting')->group(function () {
+    Route::get('/', [TastingController::class, 'index'])->name('tasting.index');
+
+    Route::middleware(['hasRole:admin,taster'])->group(function () {
+        Route::get('/create', [TastingController::class, 'create'])->name('tasting.create');
+        Route::post('/store', [TastingController::class, 'store'])->name('tasting.store');
+        Route::get('/edit/{id}', [TastingController::class, 'edit'])->name('tasting.edit');
+        Route::patch('/update', [TastingController::class, 'update'])->name('tasting.update');
+        Route::get('/delete/{id}', [TastingController::class, 'destroy'])->name('tasting.delete');
     });
 });
 

@@ -31,6 +31,9 @@
         <a class="btn btn-danger" href="{{route('recipe.delete', $recipe->id)}}" class="btn btn-primary">Apagar receita</a>
     @endif
 
+    @isset($rating)
+        <h2>Nota média: {{$rating}}</h2>
+    @endisset
 
 
 @endsection
