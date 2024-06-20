@@ -43,8 +43,12 @@ class RecipeController extends Controller
             'ingredient_ids' => 'required|array',
             'ingredient_ids.*' => 'required|integer',
             'employee_id' => 'required|integer',
-            'portions' => 'required',
+            'portions' => 'required|numeric',
             'category_id' => 'required|integer',
+            'quantities' => 'required|array',
+            'quantities.*' => 'required|numeric',
+            'measure_ids' => 'required|array',
+            'measure_ids.*' => 'required|integer',
         ]);
 
         $alreadyExists = Recipe::where('name', $request->name)->where('employee_id', $request->employee_id)->first();

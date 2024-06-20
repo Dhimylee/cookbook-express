@@ -1,33 +1,3 @@
-<style>
-    main {
-        background-color: #FBF7ED;
-        height: 95%;
-    }
-    .box-usuarios {
-        padding: 120px 100px;
-    }
-    .box-usuariosWrapper {
-        background-color: #fff;
-        border: 1px solid #FF9E0B;
-        padding: 30px;
-        border-radius: 16px;
-    }
-    .box-usuariosWrapper table {
-        /* margin: 5px; */
-        width: 100%;
-    }
-    .box-usuariosWrapper thead {
-        background-color: #FF9E0B;
-    }
-    .box-usuariosWrapper th {
-        padding: 8px;
-        color: #FBF7ED;
-    }
-    .box-usuariosWrapper td {
-        padding: 10px;
-        border-bottom: 1px solid #FF9E0B;
-    }
-</style>
 @extends('components.base')
 
 @section('title', 'Usuários')
@@ -75,4 +45,41 @@
 @endsection
 
 @section('style')
+<style>
+    main {
+        background-color: #FBF7ED;
+        height: 95%;
+    }
+    .box-usuarios {
+        padding: 120px 100px;
+    }
+    .box-usuariosWrapper {
+        background-color: #fff;
+        border: 1px solid #FF9E0B;
+        padding: 30px;
+        border-radius: 16px;
+    }
+    .box-usuariosWrapper table {
+        /* margin: 5px; */
+        width: 100%;
+    }
+    .box-usuariosWrapper thead {
+        background-color: #FF9E0B;
+    }
+    .box-usuariosWrapper th {
+        padding: 8px;
+        color: #FBF7ED;
+    }
+    .box-usuariosWrapper td {
+        padding: 10px;
+        border-bottom: 1px solid #FF9E0B;
+    }
+    h1{
+        color: #FF9E0B;
+        font-size: 36px;
+        font-weight: 500;
+        letter-spacing: normal;
+        line-height: 120%;
+    }
+</style>
 @endsection

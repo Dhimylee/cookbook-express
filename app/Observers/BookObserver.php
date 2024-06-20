@@ -21,6 +21,7 @@ class BookObserver
     {
         //
     }
+
     public function saved(Book $book): void
     {
         foreach ($book->publications as $publication) {

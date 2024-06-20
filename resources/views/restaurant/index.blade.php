@@ -13,8 +13,8 @@
 
                 <form action="{{route('restaurant.store')}}" method="POST">
                     @csrf
-                    <input type="text" name="name" placeholder="Nome do restaurante">
-                    <button type="submit">Criar</button>
+                    <input type="text" name="name" placeholder="Nome do restaurante" class="formulario">
+                    <button type="submit" class="salvar">Criar</button>
                 </form>
             </div>
         </div>
@@ -39,7 +39,7 @@
                             <form action="{{route('restaurant.delete')}}" method="POST">
                                 @csrf
                                 <input type="hidden" name="id" value="{{$restaurant->id}}">
-                                <button type="submit">Deletar</button>
+                                <button type="submit" class="deletar">Deletar</button>
                             </form>
                         </td>
                     </div>
@@ -74,6 +74,7 @@
     .box-restarant_title {
         display: flex;
         justify-content: space-between;
+        margin-bottom: 30px;
     }
 
     .box-restaurant_cadastrar {
@@ -89,8 +90,11 @@
     }
 
     .box-restaurantWrapper h1 {
-        font-size: 28px;
-        color: #8E3F1A;
+        color: #FF9E0B;
+        font-size: 36px;
+        font-weight: 500;
+        letter-spacing: normal;
+        line-height: 120%;
     }
 
     .box-restaurantWrapper table {
@@ -110,6 +114,40 @@
     .box-restaurantWrapper td {
         padding: 10px;
         border-bottom: 1px solid #FF9E0B;
+    }
+    .deletar{
+        background-color: #fbeded;
+        border: 1px solid #a2363b;
+        border-radius: 8px;
+        color: #e41313;
+        font-size: 14px;
+        padding: 10px 16px;
+    }
+    .salvar{
+        background-color: #FBF7ED;
+        border: 1px solid #FF9E0B;
+        border-radius: 8px;
+        color: #FF9E0B;
+        font-size: 14px;
+        padding: 10px 16px;
+    }
+    .formulario{
+        background-color: #fff;
+        border-radius: 4px;
+        font-weight: 400;
+        height: 48px;
+        transition: border .2s ease-in-out;
+        width: 70%;
+        color: rgba(0, 0, 0, .4);
+        font-weight: 400;
+        margin-bottom: 15px;
+        border: 1px solid rgba(234, 195, 157, .5);
+    }
+    h3{
+        color: rgba(0, 0, 0, .4);
+        font-weight: 400;
+        padding-bottom: 5px;
+        font-size: 20px;
     }
 </style>
 @endsection
