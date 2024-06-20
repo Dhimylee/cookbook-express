@@ -10,26 +10,24 @@
     @endif
     <div class="formulario">
     @foreach ($categories as $category)
-    
-        <div class="d-flex flex-row listagem">
-                <h3>{{ $category->name }}</h3>
+        <div class="listagem">
+            <h3>{{ $category->name }}</h3>
 
-                <form action="{{route('category.update')}}" method="POST">
+            <div class="d-flex align-items-center">
+                <form action="{{route('category.update')}}" method="POST" class="form-inline">
                     @csrf
                     <input type="hidden" name="id" value="{{$category->id}}">
                     <input type="text" name="name" placeholder="Atualizar nome da categoria">
                     <button type="submit" class="salvar">Atualizar</button>
                 </form>
 
-                <form action="{{route('category.delete')}}" method="POST">
+                <form action="{{route('category.delete')}}" method="POST" class="form-inline">
                     @csrf
                     <input type="hidden" name="id" value="{{$category->id}}">
                     <button type="submit" class="deletar">Deletar</button>
                 </form>
-
             </div>
-    
-
+        </div>
     @endforeach
     </div>
     <h1>Cadastrar categoria</h1>
@@ -39,19 +37,24 @@
         <input type="text" name="name" placeholder="Nome da categoria">
         <button type="submit" class="salvar">Criar</button>
     </form>
-
 @endsection
 
 @section('style')
 <style>
-    .salvar{
+    .salvar, .deletar {
         background-color: #FBF7ED;
         border: 1px solid #FF9E0B;
         border-radius: 8px;
         color: #FF9E0B;
         font-size: 14px;
         padding: 12px 18px;
-
+        margin-left: 10px; /* Espaçamento entre os botões */
+    }
+    .deletar {
+        background-color: #fbeded;
+        border: 1px solid #a2363b;
+        color: #e41313;
+        padding: 12px 16px;
     }
     main {
         background-color: #FBF7ED;
@@ -84,7 +87,7 @@
         padding: 10px;
         border-bottom: 1px solid #FF9E0B;
     }
-    .formulario form > input{
+    .formulario form > input, .form-inline > input {
         background-color: #fff;
         border-radius: 4px;
         height: 48px;
@@ -92,22 +95,13 @@
         width: 200px;
         color: rgba(0, 0, 0, .4);
         font-weight: 400;
-        margin-bottom: 15px;
         border: 1px solid rgba(234, 195, 157, .5);
         font-size: 15px;
     }
-    .formulario{
+    .formulario {
         display: grid;
         grid-template-columns: 1fr 1fr;
         padding: 20px;
-    }
-    .deletar{
-        background-color: #fbeded;
-        border: 1px solid #a2363b;
-        border-radius: 8px;
-        color: #e41313;
-        font-size: 14px;
-        padding: 12px 16px;
     }
     h1 {
         color: #FF9E0B;
@@ -119,11 +113,23 @@
     }
     h3 {
         font-size: 1.3rem;
+        display: inline-block; /* Mantém o título na mesma linha */
+        margin-right: 10px;
     }
-    .listagem{
+    .listagem {
         margin-bottom: 50px;
     }
-
+    .d-flex {
+        display: flex;
+    }
+    .align-items-center {
+        align-items: center;
+    }
+    .form-inline {
+        display: flex;
+        align-items: center;
+        margin-left: 10px;
+    }
 </style>
 @endsection
 
