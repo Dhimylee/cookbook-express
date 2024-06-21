@@ -17,7 +17,7 @@
         <div class="recipe-image">
             <img src="{{ asset('storage/recipe_images/'.$recipe->photos[0]->name) }}" alt="Imagem da receita">
         </div>
-        
+
         <p>Criada por {{$recipe->employee->user->name}}</p>
 
         <h2>Ingredientes</h2>
@@ -38,6 +38,11 @@
                 <a class="btn btn-danger" href="{{route('recipe.delete', $recipe->id)}}">Apagar receita</a>
             </div>
         @endif
+
+        @isset($rating)
+            <h2>Avaliação média</h2>
+            <p>{{$rating}}</p>
+        @endisset
     </div>
 </section>
 @endsection

@@ -87,7 +87,12 @@ class RecipeController extends Controller
      */
     public function show($id)
     {
-        return view('recipe.show', ['recipe' => Recipe::find($id)]);
+        $recipe = Recipe::find($id);
+        if(isset($recipe->tastings)) {
+            $rating = $recipe->tastings->avg('rating');
+        }
+
+        return view('recipe.show', compact('recipe', 'rating'));
     }
 
     /**
