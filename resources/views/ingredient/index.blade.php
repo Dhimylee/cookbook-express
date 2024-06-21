@@ -1,3 +1,51 @@
+@extends('components.base')
+
+@section('title', 'Ingredientes')
+
+@section('content')
+    <h1 class="titulo__header">Ingredientes</h1>
+
+    @if(session('error'))
+        <p class="ingrediente__error">{{session('error')}}</p>
+    @endif
+
+    @if(session('success'))
+        <p class="ingrediente__success">{{session('success')}}</p>
+    @endif
+
+    @foreach ($ingredients as $ingredient)
+        <div class="d-flex">
+
+            <form action="{{route('ingredient.update')}}" method="POST" class="formulario atualizar">
+                @csrf
+                <input type="hidden" name="id" value="{{$ingredient->id}}">
+                <input type="text" name="name" id="name" class="form-control" value="{{$ingredient->name}}">
+                <input type="text" name="description" id="description" class="form-control" value="{{$ingredient->description}}"
+                    placeholder="{{$ingredient->description ?? 'Descrição do ingrediente'}}">
+                <input type="submit" value="Salvar" class="salvar">
+            </form>
+
+            <form action="{{route('ingredient.delete')}}" method="POST" class="formulario atualizar">
+                @csrf
+                <input type="hidden" name="id" value="{{$ingredient->id}}">
+                <button type="submit" class="salvar">Deletar</button>
+            </form>
+
+        </div>
+    @endforeach
+
+    <h1 class="titulo__header">Cadastrar ingrediente</h1>
+
+    <form action="{{route('ingredient.store')}}" method="POST" class="formulario">
+        @csrf
+        <input type="text" name="name" placeholder="Nome do ingrediente">
+        <input type="text" name="description" placeholder="Descrição do ingrediente">
+        <button type="submit" class="salvar">Criar</button>
+    </form>
+
+@endsection
+
+@section('style')
 <style>    
     .salvar{
         background-color: #FBF7ED;
@@ -57,57 +105,6 @@
         padding-bottom: 5px;
 }
 
-</style>
-
-@extends('components.base')
-
-@section('title', 'Ingredientes')
-
-@section('content')
-    <h1 class="titulo__header">Ingredientes</h1>
-
-    @if(session('error'))
-        <p class="ingrediente__error">{{session('error')}}</p>
-    @endif
-
-    @if(session('success'))
-        <p class="ingrediente__success">{{session('success')}}</p>
-    @endif
-
-    @foreach ($ingredients as $ingredient)
-        <div class="d-flex">
-
-            <form action="{{route('ingredient.update')}}" method="POST" class="formulario atualizar">
-                @csrf
-                <input type="hidden" name="id" value="{{$ingredient->id}}">
-                <input type="text" name="name" id="name" class="form-control" value="{{$ingredient->name}}">
-                <input type="text" name="description" id="description" class="form-control" value="{{$ingredient->description}}"
-                    placeholder="{{$ingredient->description ?? 'Descrição do ingrediente'}}">
-                <input type="submit" value="Salvar" class="salvar">
-            </form>
-
-            <form action="{{route('ingredient.delete')}}" method="POST" class="formulario atualizar">
-                @csrf
-                <input type="hidden" name="id" value="{{$ingredient->id}}">
-                <button type="submit" class="salvar">Deletar</button>
-            </form>
-
-        </div>
-    @endforeach
-
-    <h1 class="titulo__header">Cadastrar ingrediente</h1>
-
-    <form action="{{route('ingredient.store')}}" method="POST" class="formulario">
-        @csrf
-        <input type="text" name="name" placeholder="Nome do ingrediente">
-        <input type="text" name="description" placeholder="Descrição do ingrediente">
-        <button type="submit" class="salvar">Criar</button>
-    </form>
-
-@endsection
-
-@section('style')
-<style>
 </style>
 @endsection
 

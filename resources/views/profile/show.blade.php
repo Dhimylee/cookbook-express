@@ -1,3 +1,70 @@
+@extends('components.base')
+
+@section('title', 'Perfil')
+
+@section('content')
+    <div>
+        <div class="perfil__header">
+            <h1>Meu perfil</h1>
+        </div>
+
+        <div class="perfil__wrapper">
+            <div class="perfil__container">
+                <aside class="perfil__col">
+                    <nav>
+                        <ul class="perfil__list">
+                            <li class="perfil__iten" style="padding-top: 30px;"><span>
+                            @if(Auth::user()->id == $user->id)
+                                <a href="{{route('profile.edit')}}" style="color: #FF9E0B; text-decoration: none;">editar perfil</a>
+                            @endif
+                            </span></li>
+                        </ul>
+                    </nav>
+                </aside>
+                <section class="perfil__dados">
+                    <div>
+                        <h2 class="perfil__title">dados pessoais</h2>
+                        <div class="perfil__dados-info">
+                            <form class="perfil__form">
+                                <div>
+                                    <label>nome</label>
+                                    <p>{{ $user->name }}</p>
+                                </div>
+                                <div>
+                                    <label>email</label>
+                                    <p>{{ $user->email }}</p>
+                                </div>
+                                <div>
+                                    <label>cargo</label>
+                                    <p>{{ App\Helpers\UserHelper::convertRoleName($user) }}</p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <!-- <h1 class="perfil__title">Perfil</h1>
+
+    <p>Nome: {{ $user->name }}</p>
+    <p>E-mail: {{ $user->email }}</p>
+    <p>Cargo: {{ App\Helpers\UserHelper::convertRoleName($user) }}</p>
+
+    {{--! Inserir o restante das informações --}}
+
+
+    @if(Auth::user()->id == $user->id)
+        <a href="{{route('profile.edit')}}">Editar Perfil</a>
+
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit">Logout</button>
+        </form>
+    @endif -->
+@endsection
+
+@section('style')
 <style>
     * {
         list-style: none;
@@ -70,77 +137,6 @@
         transition: border .2s ease-in-out;
         width: 100%;
     }
-</style>
-
-@extends('components.base')
-
-@section('title', 'Perfil')
-
-@section('content')
-    <div>
-        <div class="perfil__header">
-            <h1>Meu perfil</h1>
-        </div>
-
-        <div class="perfil__wrapper">
-            <div class="perfil__container">
-                <aside class="perfil__col">
-                    <nav>
-                        <ul class="perfil__list">
-                            <li class="perfil__iten" style="padding-top: 30px;"><span>
-                            @if(Auth::user()->id == $user->id)
-                                <a href="{{route('profile.edit')}}" style="color: #FF9E0B; text-decoration: none;">editar perfil</a>
-                            @endif
-                            </span></li>
-                        </ul>
-                    </nav>
-                </aside>
-                <section class="perfil__dados">
-                    <div>
-                        <h2 class="perfil__title">dados pessoais</h2>
-                        <div class="perfil__dados-info">
-                            <form class="perfil__form">
-                                <div>
-                                    <label>nome</label>
-                                    <p>{{ $user->name }}</p>
-                                </div>
-                                <div>
-                                    <label>email</label>
-                                    <p>{{ $user->email }}</p>
-                                </div>
-                                <div>
-                                    <label>cargo</label>
-                                    <p>{{ App\Helpers\UserHelper::convertRoleName($user) }}</p>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-    </div>
-    <!-- <h1 class="perfil__title">Perfil</h1>
-
-    <p>Nome: {{ $user->name }}</p>
-    <p>E-mail: {{ $user->email }}</p>
-    <p>Cargo: {{ App\Helpers\UserHelper::convertRoleName($user) }}</p>
-
-    {{--! Inserir o restante das informações --}}
-
-
-    @if(Auth::user()->id == $user->id)
-        <a href="{{route('profile.edit')}}">Editar Perfil</a>
-
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <button type="submit">Logout</button>
-        </form>
-    @endif -->
-@endsection
-
-@section('style')
-<style>
-
 </style>
 @endsection
 

@@ -1,95 +1,3 @@
-<style>
-        main {
-        background-color: #FBF7ED;
-        height: 95%;
-    }
-        .perfil__header{
-        color: #FF9E0B;
-        font-size: 36px;
-        font-weight: 500;
-        letter-spacing: normal;
-        line-height: 120%;
-        padding: 20px 0px 20px 50px;
-    }
-    .perfil__title {
-        font-size: 24px;
-        margin-bottom: 26px;
-        color: #8E3F1A;
-        margin-left: 5%;
-    }
-    .salvar{
-        background-color: #FBF7ED;
-        border: 1px solid #FF9E0B;
-        border-radius: 8px;
-        color: #FF9E0B;
-        font-size: 14px;
-        padding: 8px 16px;
-    }
-    .profile-form {
-        width: 100%;
-        padding: 20px;
-        border-radius: 5px;
-        background-color: #FFFFFF;
-    }
-
-    .profile-form .form-group {
-        margin-bottom: 15px;
-    }
-    .form-group label{
-        color: rgba(0,0,0,.4);
-        font-weight: 400;
-        padding-bottom: 5px;
-    }
-
-    .profile-form label {
-        display: block;
-        margin-bottom: 5px;
-    }
-
-    .profile-form input[type="email"],
-    .profile-form input[type="password"] {
-        background-color: #fff;
-        border: 1px solid rgba(234, 195, 157, .5);
-        border-radius: 4px;
-        color: rgba(0,0,0,.6);
-        font-size: 16px;
-        font-weight: 400;
-        height: 48px;
-        line-height: 48px;
-        padding: 0 10px;
-        transition: border .2s ease-in-out;
-        width: 100%;
-    }
-
-    .profile-form button.salvar {
-        background-color: #FBF7ED;
-        border: 1px solid #FF9E0B;
-        border-radius: 8px;
-        color: #FF9E0B;
-        font-size: 14px;
-        padding: 8px 16px;
-    }
-
-    .profile-form button.salvar:hover {
-        background-color: #FFFFFF;
-    }
-    .perfil__container{
-        background-color: #fff;
-        border: 1px solid #FBF7ED;
-        border-radius: 12px;
-        display: flex;
-        justify-content: space-between;
-        margin: 0 auto;
-        padding: 30px 20px;
-        width: 100%;  
-    }
-    .nome__col{
-        border-right: 1px solid rgba(234, 195, 157, .5);
-        margin-right: 20px;
-        min-width: 212px;
-        width: 20vw;
-    }
-</style>
 @extends('components.base')
 
 @section('title', 'Perfil')
@@ -192,7 +100,96 @@
 
 @section('style')
 <style>
+        main {
+        background-color: #FBF7ED;
+        height: 95%;
+    }
+        .perfil__header{
+        color: #FF9E0B;
+        font-size: 36px;
+        font-weight: 500;
+        letter-spacing: normal;
+        line-height: 120%;
+        padding: 20px 0px 20px 50px;
+    }
+    .perfil__title {
+        font-size: 24px;
+        margin-bottom: 26px;
+        color: #8E3F1A;
+        margin-left: 5%;
+    }
+    .salvar{
+        background-color: #FBF7ED;
+        border: 1px solid #FF9E0B;
+        border-radius: 8px;
+        color: #FF9E0B;
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+    .profile-form {
+        width: 100%;
+        padding: 20px;
+        border-radius: 5px;
+        background-color: #FFFFFF;
+    }
 
+    .profile-form .form-group {
+        margin-bottom: 15px;
+    }
+    .form-group label{
+        color: rgba(0,0,0,.4);
+        font-weight: 400;
+        padding-bottom: 5px;
+    }
+
+    .profile-form label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .profile-form input[type="email"],
+    .profile-form input[type="password"] {
+        background-color: #fff;
+        border: 1px solid rgba(234, 195, 157, .5);
+        border-radius: 4px;
+        color: rgba(0,0,0,.6);
+        font-size: 16px;
+        font-weight: 400;
+        height: 48px;
+        line-height: 48px;
+        padding: 0 10px;
+        transition: border .2s ease-in-out;
+        width: 100%;
+    }
+
+    .profile-form button.salvar {
+        background-color: #FBF7ED;
+        border: 1px solid #FF9E0B;
+        border-radius: 8px;
+        color: #FF9E0B;
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .profile-form button.salvar:hover {
+        background-color: #FFFFFF;
+    }
+    .perfil__container{
+        background-color: #fff;
+        border: 1px solid #FBF7ED;
+        border-radius: 12px;
+        display: flex;
+        justify-content: space-between;
+        margin: 0 auto;
+        padding: 30px 20px;
+        width: 100%;  
+    }
+    .nome__col{
+        border-right: 1px solid rgba(234, 195, 157, .5);
+        margin-right: 20px;
+        min-width: 212px;
+        width: 20vw;
+    }
 </style>
 @endsection
 
